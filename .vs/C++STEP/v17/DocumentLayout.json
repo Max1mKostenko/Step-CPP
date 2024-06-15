@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Programming\\C\u002B\u002BSTEP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:hw_1\\task_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:hw_1\\task_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:hw_1\\task_2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "task_3.cpp",
+              "DocumentMoniker": "C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_3.cpp",
+              "RelativeDocumentMoniker": "hw_1\\task_3.cpp",
+              "ToolTip": "C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_3.cpp",
+              "RelativeToolTip": "hw_1\\task_3.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-14T07:04:46.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "task_2.cpp",
+              "DocumentMoniker": "C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_2.cpp",
+              "RelativeDocumentMoniker": "hw_1\\task_2.cpp",
+              "ToolTip": "C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_2.cpp",
+              "RelativeToolTip": "hw_1\\task_2.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-14T07:04:46.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "task_1.cpp",
+              "DocumentMoniker": "C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_1.cpp",
+              "RelativeDocumentMoniker": "hw_1\\task_1.cpp",
+              "ToolTip": "C:\\Programming\\C\u002B\u002BSTEP\\hw_1\\task_1.cpp",
+              "RelativeToolTip": "hw_1\\task_1.cpp",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-14T07:04:04.216Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
