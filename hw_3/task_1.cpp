@@ -3,32 +3,14 @@ using namespace std;
 
 int main()
 {
-	float num1, num2;
-	char operation;
+    char symbol;
+    cout << "Please enter any char: ";
+    cin >> symbol;
 
-	cout << "Please enter first number: ";
-	cin >> num1;
-
-	cout << "Please enter second number: ";
-	cin >> num2;
-
-	cout << "Please enter operation (-, +, *, /): ";
-	cin >> operation;
-
-	if (operation == '+')
-		cout << num1 << " + " << num2 << " = " << num1 + num2;
-
-	else if (operation == '-')
-		cout << num1 << " - " << num2 << " = " << num1 - num2;
-
-	else if (operation == '*')
-		cout << num1 << " * " << num2 << " = " << num1 * num2;
-
-	else if (operation == '/')
-		if (num2 == 0)
-			cout << "divide by zero isn't correct";
-		else
-			cout << num1 << " / " << num2 << " = " << num1 / num2;
-	else
-		cout << "Your operetor isn't (+, -, *, /)";
+    if (isalpha(symbol))
+        cout << "Symbol is a letter: " << "'" << symbol << "'" << endl;
+    else if (isdigit(symbol))
+        cout << "Symbol is a number: " << "'" << symbol << "'" << endl;
+    else
+        cout << "Symbol is a special symbol: " << "'" << symbol << "'" << endl;
 }
