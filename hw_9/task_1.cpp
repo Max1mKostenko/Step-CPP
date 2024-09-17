@@ -1,40 +1,37 @@
 #include <iostream>
-#include <vector>        // вектор - чтобы создать динамический 2д масив. без него у меня ошибки вылазили
 using namespace std;
 
-void fill_matrix_snake(vector<vector<int>>& arr) {
-    int n = arr.size();
+void snake_matrix(int matrix[][3], int n) {
     int value = 1;
 
     for (int i = 0; i < n; i++) {
         if (i % 2 == 0) {
-            // заполняем четными
             for (int j = 0; j < n; j++) {
-                arr[i][j] = value++;
+                matrix[i][j] = value++;
             }
-        } else {
-            // заполняем не четными
+        }
+        else {
             for (int j = n - 1; j >= 0; j--) {
-                arr[i][j] = value++;
+                matrix[i][j] = value++;
             }
         }
     }
+}
 
-    // выводим матрицу
+void print_matrix(int matrix[][3], int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            cout << arr[i][j] << " ";
+            cout << matrix[i][j] << " ";
         }
         cout << endl;
     }
 }
 
 int main() {
-    int size;
-    cout << "Enter the size of the matrix: ";
-    cin >> size;
+    int arr[3][3];
 
-    vector<vector<int>> arr(size, vector<int>(size));
+    snake_matrix(arr, 3);
 
-    fill_matrix_snake(arr);
+    print_matrix(arr, 3);
+
 }
