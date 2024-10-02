@@ -1,9 +1,12 @@
 #include <iostream>
 using namespace std;
 
-void func(int mas[], int empty_mas[], int size) {
-	for (int i = 0; i < size; i++) {
-		*(empty_mas + i) = *(mas + i);
+void func(int mas[], int size) {
+	int* start = mas;
+	int* end = mas + size - 1;
+
+	for (int i = 0; i < size / 2; i++, start++, end--) {
+		swap(*start, *end);
 	}
 }
 
@@ -18,9 +21,8 @@ void show_mas(int mas[], int size) {
 int main() {
 	const int size = 6;
 	int mas[size]{ 1, 2, 3, 4, 5, 6 };
-	int empty_mas[size];
 
-	func(mas, empty_mas, size);
 	show_mas(mas, size);
-	show_mas(empty_mas, size);
+	func(mas, size);
+	show_mas(mas, size);
 }
