@@ -1,77 +1,58 @@
 #include <iostream>
 using namespace std;
 
-void random_numbers(int* mas, int size) {
-    for (int i = 0; i < size; i++)
-        mas[i] = rand() % 100;
-}
+bool find_special_char(char symbol) {
+    string specialChars = "!?.";
 
-void show_mas(int* mas, int size) {
-    for (int i = 0; i < size; i++)
-        cout << mas[i] << " ";
-    cout << endl;
-}
+    for (int i = 0; i < specialChars.length(); i++) {
+        char special = specialChars[i];
 
-int get_block_size(int max_size) {
-    int block_size;
-    while (true) {
-        cout << "Enter the size of the element block (1 to " << max_size << "): ";
-        cin >> block_size;
-        cout << endl;
-
-        if (block_size >= 1 && block_size <= max_size) {
-            return block_size;
-        }
-        else {
-            cout << "Error: Please enter a valid size between 1 and " << max_size << "" << endl;
+        if (symbol == special) {
+            return true;
         }
     }
+    return false;
 }
 
-int get_starting_index(int max_size) {
-    int start_index;
-    while (true) {
-        cout << "Enter the starting index (0 to " << max_size - 1 << "): ";
-        cin >> start_index;
-        cout << endl;
+bool func(string password) {
+    if (password.length() < 8 || password.length() > 20) {
+        return false;
+    }
 
-        if (start_index >= 0 && start_index < max_size) {
-            return start_index;
+    bool hasLower = false, hasUpper = false, hasDigit = false, hasSpecial = false;
+
+    for (int i = 0; i < password.length(); i++) {
+        char symbol = password[i];
+
+        if (islower(symbol)) {
+            hasLower = true;
         }
-        else {
-            cout << "Error: Please enter a valid index between 0 and " << max_size - 1 << "." << endl;
+        else if (isupper(symbol)) {
+            hasUpper = true;
+        }
+        else if (isdigit(symbol)) {
+            hasDigit = true;
+        }
+        else if (find_special_char(symbol)) {
+            hasSpecial = true;
+        }
+        else if (isspace(symbol)) {
+            return false;
         }
     }
-}
 
-void insert_block_into_mas(int* mas, int size, int* block, int block_size, int start_index) {
-    if (start_index + block_size > size) {
-        cout << "Error: Block size exceeds the array limits!" << endl;
-        return;
-    }
-
-    for (int i = 0; i < block_size; i++) {
-        mas[start_index + i] = block[i];
-    }
+    return hasLower && hasUpper && hasDigit && hasSpecial;
 }
 
 int main() {
-    srand(time(0));
+    string password;
+    cout << "Enter a password: ";
+    cin >> password;
 
-    const int size = 10;
-    int* mas = new int[size];
-    random_numbers(mas, size);
-    show_mas(mas, size);
-
-    int start_index = get_starting_index(size);
-    int block_size = get_block_size(size);
-
-    int* block = new int[block_size];
-    random_numbers(block, block_size);
-
-    insert_block_into_mas(mas, size, block, block_size, start_index);
-    show_mas(mas, size);
-
-    delete[] block;
-    delete[] mas;
+    if (func(password)) {
+        cout << "Password is valid!\n";
+    }
+    else {
+        cout << "Password doesn't match requirements.\n";
+    }
 }
