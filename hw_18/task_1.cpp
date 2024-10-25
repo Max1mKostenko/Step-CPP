@@ -1,36 +1,26 @@
 #include <iostream>
-#include <fstream>
-#include <string>
+#include <cstring>
 using namespace std;
 
-int main() {
-    ofstream createFile("input.txt");
-    createFile << "Hello everyone, One Two Three." << endl;
-    createFile.close();
+int main()
+{
+    char text[200] = "Hello one, Neo is everyone";
+    char newText[200] = {};
 
-    string word_to_find, word_to_replace;
+    char word[100] = "one";
+    char replace[100] = "two?";
 
-    cout << "Enter the word to find: ";
-    cin >> word_to_find;
-    cout << "Enter the word to replace: ";
-    cin >> word_to_replace;
+    int index = strstr(text, word) - text;
 
-    ifstream fin("input.txt");
-    ofstream fout("output.txt");
-    string line;
+    while (index >= 0)
+    {
+        strncpy_s(newText, text, index);
+        strcat_s(newText, replace);
+        strcat_s(newText, text + index + strlen(word));
 
-    while (getline(fin, line)) {
-        int pos = line.find(word_to_find);
-
-        while (pos >= 0 && pos < line.length()) {
-            line.replace(pos, word_to_find.length(), word_to_replace);
-            pos = line.find(word_to_find, pos + word_to_replace.length());
-        }
-        fout << line << endl;
+        strcpy_s(text, newText);
+        index = strstr(text, word) - text;
     }
 
-    fin.close();
-    fout.close();
-
-    cout << "Process complete. Check the output file" << endl;
+    puts(text);
 }
