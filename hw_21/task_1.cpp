@@ -18,7 +18,6 @@ void print_book(const Book& book) {
 
 void edit_book(Book& book) {
     cout << "Enter new title: ";
-    cin.ignore();
     cin.getline(book.title, 50);
     cout << "Enter new author: ";
     cin.getline(book.author, 50);
@@ -148,7 +147,6 @@ int main() {
         case 3: {
             char author[50];
             cout << "Enter author: ";
-            cin.ignore();
             cin.getline(author, 50);
             search_by_author(books, size, author);
             break;
@@ -156,7 +154,6 @@ int main() {
         case 4: {
             char title[50];
             cout << "Enter title: ";
-            cin.ignore();
             cin.getline(title, 50);
             search_by_title(books, size, title);
             break;
