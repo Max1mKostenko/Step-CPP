@@ -1,101 +1,112 @@
 #include <iostream>
 using namespace std;
 
-class Elevator {
+class Room {
 private:
-    int lower_floor;
-    int upper_floor;
-    int current_floor;
-    bool is_on;
+    string name;
+    double length, width, height;
+    bool wallpaper_ceiling;
 
 public:
-    void configure(int lower, int upper, int start_floor) {
-        if (lower >= upper) {
-            cout << "Error: Lower floor must be less than upper floor." << endl;
-            return;
-        }
-        if (start_floor < lower || start_floor > upper) {
-            cout << "Error: Start floor must be within the range of lower and upper floors." << endl;
-            return;
-        }
-        lower_floor = lower;
-        upper_floor = upper;
-        current_floor = start_floor;
-        is_on = false;
+    Room() : name(""), length(0), width(0), height(0), wallpaper_ceiling(false) {}
+
+    void input_room_data() {
+        cout << "Enter room name: ";
+        cin >> name;
+        cout << "Enter room length (m): ";
+        cin >> length;
+        cout << "Enter room width (m): ";
+        cin >> width;
+        cout << "Enter room height (m): ";
+        cin >> height;
+        cout << "Wallpaper ceiling? (1 - yes, 0 - no): ";
+        cin >> wallpaper_ceiling;
     }
 
-    void turn_on() {
-        if (!is_on) {
-            is_on = true;
-            cout << "Elevator is now on." << endl;
-        }
-        else {
-            cout << "Elevator is already on." << endl;
+    double calculate_wallpaper_area() const {
+        double wall_area = 2 * height * (length + width);
+        double ceiling_area = wallpaper_ceiling ? length * width : 0;
+        return wall_area + ceiling_area;
+    }
+};
+
+class WallpaperRoll {
+private:
+    string name;
+    double roll_length, roll_width, price;
+
+public:
+    WallpaperRoll() : name(""), roll_length(0), roll_width(0), price(0) {}
+
+    void input_roll_data() {
+        cout << "Enter wallpaper name: ";
+        cin >> name;
+        cout << "Enter roll length (m): ";
+        cin >> roll_length;
+        cout << "Enter roll width (m): ";
+        cin >> roll_width;
+        cout << "Enter roll price: ";
+        cin >> price;
+    }
+
+    double calculate_roll_coverage() const {
+        return roll_length * roll_width;
+    }
+
+    double get_price() const {
+        return price;
+    }
+
+    string get_name() const {
+        return name;
+    }
+};
+
+class Apartment {
+private:
+    Room rooms[10];
+    int room_count;
+
+public:
+    Apartment() : room_count(0) {}
+
+    void input_apartment_data() {
+        cout << "Enter number of rooms: ";
+        cin >> room_count;
+        for (int i = 0; i < room_count; ++i) {
+            cout << "\nRoom #" << i + 1 << ":\n";
+            rooms[i].input_room_data();
         }
     }
 
-    void turn_off() {
-        if (is_on) {
-            is_on = false;
-            cout << "Elevator is now off." << endl;
-        }
-        else {
-            cout << "Elevator is already off." << endl;
-        }
-    }
-
-    bool get_status() {
-        return is_on;
-    }
-
-    int get_current_floor() {
-        return current_floor;
-    }
-
-    void call_elevator(int floor) {
-        if (!is_on) {
-            cout << "The elevator is off and cannot move." << endl;
-            return;
-        }
-        if (floor < lower_floor || floor > upper_floor) {
-            cout << "The specified floor is out of range." << endl;
-            return;
-        }
-        if (floor == current_floor) {
-            cout << "Elevator is already on floor " << floor << "." << endl;
-            return;
+    void calculate_wallpaper_usage(const WallpaperRoll& roll) const {
+        double total_area = 0;
+        for (int i = 0; i < room_count; ++i) {
+            total_area += rooms[i].calculate_wallpaper_area();
         }
 
-        cout << "Elevator is moving from floor " << current_floor << " to floor " << floor << "." << endl;
-        current_floor = floor;
+        double roll_coverage = roll.calculate_roll_coverage();
+        int rolls_needed = total_area / roll_coverage;
+        if (total_area > rolls_needed * roll_coverage) {
+            rolls_needed++;
+        }
+
+        cout << "\nFor wallpaper \"" << roll.get_name() << "\":\n";
+        cout << "Rolls needed: " << rolls_needed << "\n";
+        cout << "Total cost: " << rolls_needed * roll.get_price() << " units\n";
     }
 };
 
 int main() {
-    Elevator elevator;
+    Apartment apartment;
+    WallpaperRoll wallpaper;
 
-    elevator.configure(-2, 9, 0);
+    cout << "Apartment data input:\n";
+    apartment.input_apartment_data();
 
-    elevator.turn_on();
-    cout << "Elevator status: " << (elevator.get_status() ? "working" : "not working") << endl;
+    cout << "\nWallpaper roll data input:\n";
+    wallpaper.input_roll_data();
 
-    elevator.call_elevator(5);
-    cout << "Current floor: " << elevator.get_current_floor() << endl;
-
-    elevator.turn_off();
-    elevator.call_elevator(3);
-    cout << "Elevator status: " << (elevator.get_status() ? "working" : "not working") << endl;
-
-    elevator.turn_on();
-    cout << "Elevator status: " << (elevator.get_status() ? "working" : "not working") << endl;
-
-    elevator.call_elevator(-2);
-    cout << "Current floor: " << elevator.get_current_floor() << endl;
-
-    elevator.call_elevator(-2);
-
-    elevator.turn_off();
-    elevator.turn_off();
-    elevator.turn_on();
-    elevator.turn_on();
+    cout << "\nCalculation result:\n";
+    apartment.calculate_wallpaper_usage(wallpaper);
 }
