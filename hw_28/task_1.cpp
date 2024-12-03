@@ -1,35 +1,72 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-void func(const string& path) {
-    unsigned int last_backslash = path.rfind('\\');
-    string a = (last_backslash != -1) ? path.substr(0, last_backslash) : "";
+class Apartment {
+private:
+    int number_;
+    int residents_;
+public:
+    Apartment() : number_(0), residents_(0) {}
+    Apartment(int number, int residents) : number_(number), residents_(residents) {}
+    Apartment(const Apartment& other) : number_(other.number_), residents_(other.residents_) {}
 
-    string b = "";
-    if (!a.empty()) {
-        unsigned int second_last_backslash = a.rfind('\\');
-        b = (second_last_backslash != -1) ? a.substr(second_last_backslash + 1) : a;
+    void show_info() {
+        cout << "Apartment Number: " << number_ << ", Residents: " << residents_ << endl;
     }
 
-    string c = (last_backslash != -1) ? path.substr(last_backslash + 1) : path;
+    void set_info(int number, int residents) {
+        number_ = number;
+        residents_ = residents;
+    }
 
-    unsigned int dot_pos = c.rfind('.');
-    string d = (dot_pos != -1) ? c.substr(dot_pos) : "";
+    int get_residents() const {
+        return residents_;
+    }
+};
 
-    string e = (dot_pos != -1) ? c.substr(0, dot_pos) : c;
+class House {
+private:
+    Apartment* apartments_;
+    int total_apartments_;
+public:
+    House() : apartments_(0), total_apartments_(0) {}
+    House(int total_apartments) : total_apartments_(total_apartments) {
+        apartments_ = new Apartment[total_apartments_];
+    }
 
-    cout << "a) " << a << endl;
-    cout << "b) " << b << endl;
-    cout << "c) " << c << endl;
-    cout << "d) " << d << endl;
-    cout << "e) " << e << endl;
-}
+    House(const House& other) : total_apartments_(other.total_apartments_) {
+        apartments_ = new Apartment[total_apartments_];
+        for (int i = 0; i < total_apartments_; ++i) {
+            apartments_[i] = other.apartments_[i];
+        }
+    }
+
+    ~House() {
+        delete[] apartments_;
+    }
+
+    void set_apartment(int index, int number, int residents) {
+        if (index >= 0 && index < total_apartments_) {
+            apartments_[index].set_info(number, residents);
+        }
+    }
+
+    void show_info() {
+        cout << "House with " << total_apartments_ << " apartments:" << endl;
+        for (int i = 0; i < total_apartments_; ++i) {
+            apartments_[i].show_info();
+        }
+    }
+};
 
 int main() {
-    string file_path;
-    cout << "Enter the file path: ";
-    getline(cin, file_path);
+    House my_house(3);
+    my_house.set_apartment(0, 101, 3);
+    my_house.set_apartment(1, 102, 4);
+    my_house.set_apartment(2, 103, 2);
+    my_house.show_info();
 
-    func(file_path);
+    House copied_house = my_house;
+    cout << "\nCopied House Info:" << endl;
+    copied_house.show_info();
 }
